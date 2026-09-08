@@ -1,0 +1,116 @@
+---
+import { ArrowUpRight } from 'lucide-astro';
+
+const insights = [
+  {
+    featured: true,
+    tag: "Report & Analisi 2026",
+    title: "La conformità edilizia come fattore di rendimento negli investimenti residenziali a Milano",
+    readTime: "5 min lettura",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=1200&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    featured: false,
+    tag: "Guida Normativa",
+    title: "Salva Casa e regolarizzazione delle difformità lievi: cosa cambia prima del rogito",
+    readTime: "4 min lettura",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    link: "#"
+  },
+  {
+    featured: false,
+    tag: "Case Study",
+    title: "Come un fondo di private equity ha azzerato i tempi di due diligence su 40 asset",
+    readTime: "3 min lettura",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    link: "#"
+  }
+];
+
+const featuredItem = insights.find(i => i.featured);
+const sideItems = insights.filter(i => !i.featured);
+---
+
+<section class="py-20 bg-white border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Header sezione con il punto iconico CONFORMA -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 pb-4 border-b border-slate-200">
+      <div>
+        <div class="flex items-center gap-2 mb-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-gold"></span>
+          <span class="text-xs font-bold tracking-[0.25em] text-slate-500 uppercase">
+            Perspectives & Insights
+          </span>
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brand-dark tracking-tight">
+          Il punto di vista degli esperti<span class="text-brand-gold font-sans">.</span>
+        </h2>
+      </div>
+
+      <a href="#tutti-gli-insights" class="mt-4 md:mt-0 inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-brand-dark hover:text-brand-gold transition-colors">
+        <span>Tutti gli approfondimenti</span>
+        <ArrowUpRight class="w-4 h-4" />
+      </a>
+    </div>
+
+    <!-- Griglia Asimmetrica Deloitte Style: 1 Grande a sinistra, 2 a destra -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      
+      <!-- Big Card (7 col) -->
+      {featuredItem && (
+        <a href={featuredItem.link} class="group lg:col-span-7 block bg-slate-900 overflow-hidden relative min-h-[420px] flex flex-col justify-end p-8 sm:p-10 shadow-sm">
+          <img 
+            src={featuredItem.image} 
+            alt={featuredItem.title} 
+            class="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:scale-105 group-hover:opacity-40 transition-all duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+
+          <div class="relative z-10">
+            <div class="flex items-center gap-3 text-[11px] font-semibold tracking-wider uppercase text-brand-gold mb-3">
+              <span>{featuredItem.tag}</span>
+              <span class="w-1 h-1 rounded-full bg-white/40"></span>
+              <span class="text-slate-300 font-normal">{featuredItem.readTime}</span>
+            </div>
+
+            <h3 class="font-serif text-2xl sm:text-3xl font-medium text-white group-hover:text-brand-gold transition-colors leading-tight mb-4">
+              {featuredItem.title}
+            </h3>
+
+            <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white">
+              <span>Leggi l'articolo</span>
+              <ArrowUpRight class="w-4 h-4 text-brand-gold group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </span>
+          </div>
+        </a>
+      )}
+
+      <!-- 2 Card affiancate a destra (5 col) -->
+      <div class="lg:col-span-5 flex flex-col justify-between gap-6">
+        {sideItems.map((item) => (
+          <a href={item.link} class="group bg-slate-50 border border-slate-200 p-6 flex flex-col justify-between hover:border-brand-dark transition-colors duration-200">
+            <div>
+              <div class="flex items-center gap-2 text-[10px] font-bold tracking-wider uppercase text-slate-500 mb-2">
+                <span class="text-brand-dark">{item.tag}</span>
+                <span>•</span>
+                <span>{item.readTime}</span>
+              </div>
+              <h4 class="font-serif text-lg font-medium text-slate-900 group-hover:text-brand-gold transition-colors leading-snug mb-3">
+                {item.title}
+              </h4>
+            </div>
+
+            <div class="pt-4 border-t border-slate-200/60 flex items-center justify-between text-xs font-bold text-slate-800 uppercase tracking-wider">
+              <span>Approfondisci</span>
+              <ArrowUpRight class="w-4 h-4 text-slate-400 group-hover:text-brand-dark group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>

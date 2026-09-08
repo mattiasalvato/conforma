@@ -1,0 +1,84 @@
+---
+import { Tag, KeyRound, Briefcase, ArrowRight } from 'lucide-astro';
+
+const services = [
+  {
+    icon: Tag,
+    title: "SELL",
+    desc: "Prepara il tuo immobile alla vendita. Verifiche, regolarizzazioni e documentazione per valorizzare e vendere senza intoppi.",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop",
+    link: "#sell"
+  },
+  {
+    icon: KeyRound,
+    title: "BUY",
+    desc: "Acquista in sicurezza. Due diligence tecnica e urbanistica per comprare consapevolmente.",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    link: "#buy"
+  },
+  {
+    icon: Briefcase,
+    title: "PORTFOLIO",
+    desc: "Gestisci e valorizza il tuo patrimonio. Monitoraggio continuo e Property Passport per ogni immobile.",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
+    link: "#portfolio"
+  }
+];
+---
+
+<section id="servizi" class="py-20 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="mb-12">
+      <p class="text-xs font-bold tracking-[0.2em] text-brand-gold uppercase mb-2">
+        I nostri servizi
+      </p>
+        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brand-dark tracking-tight">
+            Soluzioni complete per ogni esigenza immobiliare<span class="text-brand-gold font-sans">.</span>
+        </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {services.map((item) => {
+        const IconComponent = item.icon;
+        return (
+          <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between group hover:shadow-md transition-shadow">
+            <div>
+              <div class="relative h-56 w-full overflow-hidden">
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <!-- Badge tondo navy con icona -->
+                <div class="absolute bottom-4 left-6 w-12 h-12 rounded-full bg-brand-navy border border-white/20 flex items-center justify-center text-white shadow-lg">
+                  <IconComponent class="w-5 h-5" />
+                </div>
+              </div>
+
+              <div class="p-6 pt-5">
+                <h3 class="text-xl font-extrabold text-brand-dark tracking-wide mb-3">
+                  {item.title}
+                </h3>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            </div>
+
+            <div class="p-6 pt-0">
+              <a 
+                href={item.link} 
+                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-gold hover:text-brand-gold-hover transition-colors"
+              >
+                <span>Scopri di più</span>
+                <ArrowRight class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

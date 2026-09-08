@@ -1,0 +1,171 @@
+---
+import { Lock, Menu, X, ArrowRight } from 'lucide-astro';
+
+const navLinks = [
+  { label: "Servizi", href: "#servizi" },
+  { label: "Practice Tracker", href: "#practice-tracker" },
+  { label: "Perché CONFORMA", href: "#perche-noi" },
+  { label: "Contatti", href: "#contatti" },
+];
+---
+
+<header class="sticky top-0 z-50 bg-brand-dark/95 backdrop-blur border-b border-white/10 text-white transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    
+    <!-- Logo CONFORMA -->
+    <a href="/" class="flex flex-col group shrink-0">
+      <span class="text-xl sm:text-2xl font-extrabold tracking-[0.22em] uppercase font-sans text-white">
+        Conform<span class="text-brand-gold">a</span>.
+      </span>
+      <span class="text-[8px] sm:text-[9px] tracking-[0.28em] text-slate-400 uppercase -mt-0.5">
+        Real Estate Compliance
+      </span>
+    </a>
+
+    <!-- Desktop Navigation (lg in su) -->
+    <nav class="hidden lg:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class="text-slate-300 hover:text-brand-gold transition-colors py-1"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- CTAs Desktop & Tablet -->
+    <div class="hidden sm:flex items-center gap-3">
+      <a
+        href="/area-riservata"
+        class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors"
+      >
+        <Lock class="w-3.5 h-3.5 text-brand-gold" />
+        <span >Area Riservata</span>
+      </a>
+
+      <a
+        href="#contatti"
+        class="bg-brand-gold hover:bg-brand-gold-hover text-brand-dark text-xs font-bold uppercase tracking-wider py-2.5 px-4 sm:py-3 sm:px-5 rounded transition-colors shadow-sm shrink-0"
+      >
+        Richiedi Consulenza
+      </a>
+    </div>
+
+    <!-- Mobile Toggle Button (visibile sotto lg) -->
+    <div class="flex items-center gap-2 sm:hidden">
+      <!-- Mini CTA rapida su mobile molto stretto -->
+      <a
+        href="#contatti"
+        class="bg-brand-gold hover:bg-brand-gold-hover text-brand-dark text-[11px] font-bold uppercase tracking-wider py-2 px-3 rounded transition-colors"
+      >
+        Contattaci
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Apri menu di navigazione"
+        aria-expanded="false"
+        class="p-2 text-slate-300 hover:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-gold"
+      >
+        <Menu id="icon-menu" class="w-6 h-6 block" />
+        <X id="icon-close" class="w-6 h-6 hidden" />
+      </button>
+    </div>
+
+    <!-- Burger icon per tablet (tra sm e lg) -->
+    <button
+      id="tablet-menu-btn"
+      type="button"
+      aria-label="Apri menu"
+      aria-expanded="false"
+      class="hidden sm:flex lg:hidden p-2 text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold"
+    >
+      <Menu id="icon-tablet-menu" class="w-6 h-6 block" />
+      <X id="icon-tablet-close" class="w-6 h-6 hidden" />
+    </button>
+
+  </div>
+
+  <!-- Mobile Drawer Dropdown -->
+  <div 
+    id="mobile-menu" 
+    class="hidden lg:hidden bg-brand-dark/98 border-b border-white/10 px-4 pt-4 pb-6 transition-all duration-300 shadow-2xl"
+  >
+    <div class="flex flex-col space-y-3">
+      {navLinks.map((link) => (
+        <a 
+          href={link.href}
+          class="mobile-nav-link text-sm font-semibold text-slate-200 hover:text-brand-gold uppercase tracking-wider py-2.5 px-3 rounded hover:bg-white/5 transition-colors flex items-center justify-between"
+        >
+          <span>{link.label}</span>
+          <ArrowRight class="w-4 h-4 text-slate-500" />
+        </a>
+      ))}
+
+      <div class="pt-4 mt-2 border-t border-white/10 space-y-3">
+        <a
+          href="#practice-tracker"
+          class="mobile-nav-link flex items-center justify-center gap-2 w-full py-3 text-xs font-semibold uppercase tracking-wider text-slate-200 bg-white/5 border border-white/15 rounded hover:bg-white/10 transition-colors"
+        >
+          <Lock class="w-3.5 h-3.5 text-brand-gold" />
+          <span>Accedi al Practice Tracker</span>
+        </a>
+
+        <a
+          href="#contatti"
+          class="mobile-nav-link flex items-center justify-center w-full py-3.5 text-xs font-bold uppercase tracking-wider text-brand-dark bg-brand-gold hover:bg-brand-gold-hover rounded transition-colors shadow-sm"
+        >
+          Richiedi Consulenza
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function setupMobileMenu() {
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const tabletBtn = document.getElementById('tablet-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    const iconMenu = document.getElementById('icon-menu');
+    const iconClose = document.getElementById('icon-close');
+    const iconTabletMenu = document.getElementById('icon-tablet-menu');
+    const iconTabletClose = document.getElementById('icon-tablet-close');
+
+    const toggleMenu = () => {
+      const isExpanded = mobileMenu?.classList.toggle('hidden') === false;
+
+      // Aggiorna icone mobile
+      iconMenu?.classList.toggle('hidden', isExpanded);
+      iconClose?.classList.toggle('hidden', !isExpanded);
+
+      // Aggiorna icone tablet
+      iconTabletMenu?.classList.toggle('hidden', isExpanded);
+      iconTabletClose?.classList.toggle('hidden', !isExpanded);
+
+      // ARIA attributes
+      mobileBtn?.setAttribute('aria-expanded', String(isExpanded));
+      tabletBtn?.setAttribute('aria-expanded', String(isExpanded));
+    };
+
+    mobileBtn?.addEventListener('click', toggleMenu);
+    tabletBtn?.addEventListener('click', toggleMenu);
+
+    // Chiudi il menu quando si clicca su qualsiasi ancora interna
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (!mobileMenu?.classList.contains('hidden')) {
+          toggleMenu();
+        }
+      });
+    });
+  }
+
+  // Supporta sia caricamento iniziale che View Transitions di Astro
+  setupMobileMenu();
+  document.addEventListener('astro:after-swap', setupMobileMenu);
+</script>

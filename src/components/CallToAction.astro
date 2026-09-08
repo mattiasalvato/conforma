@@ -1,0 +1,128 @@
+---
+import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
+---
+
+<section id="contatti" class="relative bg-gradient-to-b from-white from-50% to-brand-dark to-50% pt-8 pb-12 sm:pb-16 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Banner Card con background scuro e texture -->
+    <div class="relative w-full aspect-[16/10] sm:aspect-[21/9] min-h-[400px] sm:min-h-[460px] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center text-center p-6 sm:p-12 bg-slate-950 group">
+      
+      <!-- Immagine di sfondo desaturata -->
+      <img
+        src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop"
+        alt="Dettaglio architettonico"
+        class="absolute inset-0 w-full h-full object-cover object-center opacity-30 grayscale-[30%] group-hover:scale-105 group-hover:opacity-40 transition-all duration-1000 ease-out"
+      />
+
+      <!-- Overlay scuro a sfumatura per massimo contrasto -->
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/85 to-brand-dark/75"></div>
+
+      <!-- Contenuto in primo piano -->
+      <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+        
+        <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.15] mb-4">
+          Hai un immobile o un portafoglio da verificare<span class="text-brand-gold font-sans font-bold">?</span>
+        </h2>
+
+        <p class="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed max-w-xl mb-8">
+          I nostri tecnici e legali eseguono una prima valutazione di conformità per azzerare ogni rischio prima del preliminare o del rogito.
+        </p>
+
+        <!-- Form Email ad alta conversione -->
+        <div class="w-full max-w-md bg-white/[0.04] border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-sm">
+          <form id="cta-lead-form" class="flex flex-col sm:flex-row gap-2">
+            <div class="relative flex-1">
+              <input 
+                id="cta-email"
+                type="email" 
+                name="email"
+                required 
+                placeholder="Inserisci la tua email..."
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+              />
+            </div>
+            
+            <button 
+              id="cta-submit-btn"
+              type="submit"
+              class="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-100 text-slate-950 font-semibold text-xs tracking-wide py-3.5 px-6 rounded-xl transition-all shadow-md shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group/btn"
+            >
+              <span id="cta-btn-text">Richiedi una Valutazione</span>
+              <ArrowUpRight id="cta-btn-icon" class="w-4 h-4 text-slate-700 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </button>
+          </form>
+
+          <!-- Feedback di Successo -->
+          <div id="cta-form-success" class="hidden py-3 px-2 flex items-center justify-center gap-2 text-emerald-400 text-xs font-semibold">
+            <CheckCircle2 class="w-4 h-4 shrink-0" />
+            <span>Richiesta inviata! Ti contatteremo entro 24 ore.</span>
+          </div>
+
+          <!-- Feedback di Errore -->
+          <p id="cta-form-error" class="hidden text-rose-400 text-xs font-medium text-center py-2">
+            Si è verificato un errore. Riprova più tardi.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Inserisci qui lo stesso URL dell'applicazione web di Google Apps Script
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjrLsr72OVlnuWIbGi7pQumzxeZyLJX55o1M_XHxEARl2-PtbZIGixlg3R92-WiJwFNQ/exec";
+
+  function initCtaForm() {
+    const form = document.getElementById('cta-lead-form') as HTMLFormElement | null;
+    const emailInput = document.getElementById('cta-email') as HTMLInputElement | null;
+    const submitBtn = document.getElementById('cta-submit-btn') as HTMLButtonElement | null;
+    const btnText = document.getElementById('cta-btn-text');
+    const btnIcon = document.getElementById('cta-btn-icon');
+    const successMsg = document.getElementById('cta-form-success');
+    const errorMsg = document.getElementById('cta-form-error');
+
+    if (!form || !emailInput || !submitBtn) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = emailInput.value.trim();
+
+      if (!email) return;
+
+      submitBtn.disabled = true;
+      if (btnText) btnText.textContent = "Invio...";
+      btnIcon?.classList.add('hidden');
+      errorMsg?.classList.add('hidden');
+
+      try {
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ 
+            email,
+            source: 'cta-homepage'
+          }),
+        });
+
+        form.classList.add('hidden');
+        successMsg?.classList.remove('hidden');
+      } catch (err) {
+        console.error("Errore invio CTA:", err);
+        submitBtn.disabled = false;
+        if (btnText) btnText.textContent = "Richiedi una Valutazione";
+        btnIcon?.classList.remove('hidden');
+        errorMsg?.classList.remove('hidden');
+      }
+    });
+  }
+
+  initCtaForm();
+  document.addEventListener('astro:after-swap', initCtaForm);
+</script>

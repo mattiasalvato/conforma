@@ -1,0 +1,189 @@
+---
+import { Lock, ArrowUpRight, CheckCircle2, FileText, Download, ShieldCheck } from 'lucide-astro';
+
+const metrics = [
+  { label: "Pratiche in lavorazione", value: "12", trend: "3 in chiusura questa settimana" },
+  { label: "Conformità asseverata", value: "98.4%", trend: "Zero contenziosi" },
+  { label: "Tempo medio rilascio", value: "9 gg", trend: "-40% vs media settore" },
+];
+
+const dossiers = [
+  {
+    address: "Via Montenapoleone 14, Milano",
+    protocol: "PRAT-2026-089",
+    type: "Due Diligence Vendita",
+    status: "Asseverato",
+    statusColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+    docs: "RTI + Fascicolo Edilizio",
+  },
+  {
+    address: "Corso Venezia 28, Milano",
+    protocol: "PRAT-2026-092",
+    type: "Audit Urbanistico / Salva Casa",
+    status: "In Istruttoria",
+    statusColor: "bg-amber-500/10 text-brand-gold border-brand-gold/20",
+    docs: "Accesso Atti Comune",
+  },
+  {
+    address: "Piazza Duomo 3, Milano",
+    protocol: "PRAT-2026-094",
+    type: "Property Passport",
+    status: "Verifica Catastale",
+    statusColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+    docs: "Planimetrie storiche",
+  }
+];
+---
+
+<section id="practice-tracker" class="bg-brand-dark text-white py-24 sm:py-32 relative overflow-hidden border-b border-white/5">
+  
+  <!-- Bagliori di profondità ambientali -->
+  <div class="absolute top-1/4 right-0 w-[600px] h-[600px] bg-brand-gold/[0.04] rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-blue-500/[0.03] rounded-full blur-[120px] pointer-events-none"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Colonna Sinistra: Value Proposition & Copy Tecnico (5 col) -->
+      <div class="lg:col-span-5">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
+          <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+          <span class="text-[11px] font-semibold tracking-widest text-slate-300 uppercase">
+            Infrastruttura Digitale
+          </span>
+        </div>
+
+        <h2 class="font-serif text-3xl sm:text-5xl font-normal tracking-tight text-white leading-[1.12] mb-6">
+          Il controllo totale dei tuoi asset, <span class="text-brand-gold italic">in tempo reale</span>.
+        </h2>
+
+        <p class="text-base text-slate-300 font-normal leading-relaxed mb-8">
+          Practice Tracker è l'ambiente protetto sviluppato da CONFORMA per consentire a proprietà, investitori e studi notarili di monitorare ogni fase istruttoria: dall'accesso agli atti fino alla Relazione Tecnica Integrata (RTI).
+        </p>
+
+        <!-- Feature List Istituzionale -->
+        <div class="space-y-4 mb-10 pb-8 border-b border-white/10">
+          <div class="flex items-start gap-3">
+            <CheckCircle2 class="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+            <div>
+              <p class="text-sm font-semibold text-white">Data Room Documentale Criptata</p>
+              <p class="text-xs text-slate-400 mt-0.5">Titoli edilizi, planimetrie e asseverazioni archiviati con valore probatorio.</p>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <CheckCircle2 class="w-5 h-5 text-brand-gold shrink-0 mt-0.5" />
+            <div>
+              <p class="text-sm font-semibold text-white">Audit Trail & Tracciamento Fasi</p>
+              <p class="text-xs text-slate-400 mt-0.5">Stato di avanzamento verificabile direttamente dal notaio rogante.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="#accesso-tracker"
+            class="inline-flex items-center gap-2.5 bg-brand-gold hover:bg-brand-gold-hover text-brand-dark font-bold text-xs uppercase tracking-wider py-4 px-7 rounded-xl transition-all shadow-lg hover:shadow-brand-gold/20"
+          >
+            <span>Accedi all'Area Riservata</span>
+            <Lock class="w-3.5 h-3.5" />
+          </a>
+
+          <span class="text-xs text-slate-400">Accesso sicuro crittografato SSL</span>
+        </div>
+
+      </div>
+
+      <!-- Colonna Destra: Dashboard Dark Mode ad Alto Impatto (7 col) -->
+      <div class="lg:col-span-7">
+        
+        <div class="rounded-2xl bg-[#0e1724] border border-white/10 shadow-2xl p-6 sm:p-8 backdrop-blur-sm relative">
+          
+          <!-- Topbar dell'applicazione -->
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-white/10">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Fascicoli Attivi</span>
+                <span class="px-2 py-0.5 text-[10px] font-semibold bg-brand-gold/10 text-brand-gold rounded border border-brand-gold/20">
+                  Live Audit
+                </span>
+              </div>
+              <p class="text-sm font-semibold text-white mt-1">Portfolio Residenziale Milano Centro</p>
+            </div>
+
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span class="text-xs text-slate-300 font-mono">Registro Aggiornato</span>
+            </div>
+          </div>
+
+          <!-- KPI Cards a 3 colonne -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
+            {metrics.map((m) => (
+              <div class="bg-white/[0.03] border border-white/5 rounded-xl p-4">
+                <p class="text-[11px] text-slate-400 uppercase tracking-wider font-medium">{m.label}</p>
+                <p class="font-serif text-2xl font-bold text-white mt-1 mb-1">{m.value}</p>
+                <p class="text-[10px] text-slate-500 truncate">{m.trend}</p>
+              </div>
+            ))}
+          </div>
+
+          <!-- Elenco Pratiche Dettagliate -->
+          <div class="space-y-2.5">
+            <div class="flex justify-between text-[10px] font-bold uppercase tracking-widest text-slate-400 px-3 pb-1">
+              <span>Immobile & Protocollo</span>
+              <span>Stato Istruttorio</span>
+            </div>
+
+            {dossiers.map((item) => (
+              <div class="p-3.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 transition-all flex flex-col sm:flex-row sm:items-center justify-between gap-3 group">
+                <div class="flex items-center gap-3">
+                  <div class="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-brand-gold group-hover:border-brand-gold/30 transition-colors">
+                    <FileText class="w-4 h-4" />
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <p class="text-xs font-semibold text-white group-hover:text-brand-gold transition-colors">
+                        {item.address}
+                      </p>
+                    </div>
+                    <p class="text-[11px] text-slate-400 font-mono mt-0.5">
+                      {item.protocol} <span class="text-slate-600">•</span> {item.docs}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                  <span class={`text-[11px] font-medium px-2.5 py-1 rounded-md border ${item.statusColor}`}>
+                    {item.status}
+                  </span>
+                  <button type="button" aria-label="Scarica documentazione" class="p-1.5 text-slate-400 hover:text-white rounded hover:bg-white/10 transition-colors">
+                    <Download class="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Card inferiore di garanzia asseverata -->
+          <div class="mt-6 pt-5 border-t border-white/10 flex items-center justify-between text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+              <ShieldCheck class="w-4 h-4 text-brand-gold" />
+              <span>Conformità urbanistica validata ai sensi del D.P.R. 380/01</span>
+            </div>
+            <a href="#demo" class="text-brand-gold hover:underline font-semibold text-[11px] uppercase tracking-wider inline-flex items-center gap-1">
+              <span>Richiedi Demo</span>
+              <ArrowUpRight class="w-3 h-3" />
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

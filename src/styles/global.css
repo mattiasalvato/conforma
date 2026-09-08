@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Source Serif 4", "ITC Charter", Charter, Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --color-brand-dark: #0a1420;
+  --color-brand-navy: #101d2d;
+  --color-brand-gold: #e5a93c;
+  --color-brand-gold-hover: #cf942b;
+}
