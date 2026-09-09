@@ -1,83 +1,154 @@
 ---
-import { Tag, KeyRound, Briefcase, ArrowRight } from 'lucide-astro';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
 
 const services = [
   {
-    icon: Tag,
-    title: "SELL",
-    desc: "Prepara il tuo immobile alla vendita. Verifiche, regolarizzazioni e documentazione per valorizzare e vendere senza intoppi.",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=800&auto=format&fit=crop",
-    link: "#sell"
+    number: "01",
+    category: "Per Agenzie & Proprietà",
+    title: "Pacchetto Conformità Sell & RRE",
+    desc: "Il protocollo completo per portare l'immobile al preliminare e al rogito notarile a zero rischi di contenzioso.",
+    sla: "Sopralluogo in 24h • Avvio fascicolo in 48h",
+    deliverables: [
+      "Rilascio Certificato RRE (Relazione di Regolarità Edilizia)",
+      "Accesso atti e verifica conformità urbanistica e catastale",
+      "Allineamento planimetrie e regolarizzazione difformità"
+    ],
+    highlight: true
   },
   {
-    icon: KeyRound,
-    title: "BUY",
-    desc: "Acquista in sicurezza. Due diligence tecnica e urbanistica per comprare consapevolmente.",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-    link: "#buy"
+    number: "02",
+    category: "Per Acquirenti & Investitori",
+    title: "Due Diligence Pre-Acquisto",
+    desc: "Audit tecnico e legale preventivo su compravendite singole per accertare lo stato legittimo prima della proposta.",
+    sla: "Presa in carico entro 24 ore",
+    deliverables: [
+      "Analisi vincoli paesaggistici, storici e condominiali",
+      "Stima economica e tempi per eventuali sanatorie",
+      "Relazione peritale per la banca (delibera mutuo)"
+    ],
+    highlight: false
   },
   {
-    icon: Briefcase,
-    title: "PORTFOLIO",
-    desc: "Gestisci e valorizza il tuo patrimonio. Monitoraggio continuo e Property Passport per ogni immobile.",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
-    link: "#portfolio"
+    number: "03",
+    category: "Per Reti & Portafogli",
+    title: "Convenzione Agenzie & Portfolio",
+    desc: "Canale preferenziale per agenzie con molteplici unità: dashboard condivisa e gestione integrata dei mandati.",
+    sla: "SLA dedicati e referente tecnico unico",
+    deliverables: [
+      "Accesso multi-utente al Practice Tracker",
+      "Monitoraggio scadenze e allineamento documentale",
+      "Fascicolo digitale univoco per ogni mandato di vendita"
+    ],
+    highlight: false
   }
 ];
 ---
 
-<section id="servizi" class="py-20 bg-slate-50">
+<section id="servizi" class="py-24 bg-slate-50 text-slate-900 border-b border-slate-200">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
-    <div class="mb-12">
-      <p class="text-xs font-bold tracking-[0.2em] text-brand-gold uppercase mb-2">
-        I nostri servizi
-      </p>
-        <h2 class="font-serif text-3xl sm:text-4xl font-semibold text-brand-dark tracking-tight">
-            Soluzioni complete per ogni esigenza immobiliare<span class="text-brand-gold font-sans">.</span>
+    <!-- Header Sezione Editoriale -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-8 border-b border-slate-200">
+      <div class="max-w-2xl">
+        <p class="text-[11px] font-bold tracking-[0.25em] text-brand-gold uppercase mb-3">
+          Protocolli Operativi
+        </p>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-slate-950">
+          Servizi tecnici strutturati per accelerare e blindare ogni closing.
         </h2>
+      </div>
+
+      <!-- SLA Indicator Minimale -->
+      <div class="pl-4 border-l-2 border-brand-gold shrink-0">
+        <span class="block text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+          Standard Operativo
+        </span>
+        <span class="text-xs font-semibold text-slate-900 tracking-tight">
+          Sopralluogo entro 24h • Iter in 48h
+        </span>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {services.map((item) => {
-        const IconComponent = item.icon;
-        return (
-          <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between group hover:shadow-md transition-shadow">
-            <div>
-              <div class="relative h-56 w-full overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <!-- Badge tondo navy con icona -->
-                <div class="absolute bottom-4 left-6 w-12 h-12 rounded-full bg-brand-navy border border-white/20 flex items-center justify-center text-white shadow-lg">
-                  <IconComponent class="w-5 h-5" />
-                </div>
-              </div>
+    <!-- Grid Card Servizi -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {services.map((srv) => (
+        <div class={`rounded-2xl p-8 sm:p-9 flex flex-col justify-between transition-all duration-200 ${
+          srv.highlight 
+            ? 'bg-brand-dark text-white shadow-xl ring-1 ring-white/10 relative' 
+            : 'bg-white text-slate-900 border border-slate-200 hover:border-slate-300 shadow-sm'
+        }`}>
+          
+          <div>
+            <!-- Header Card con Indice Numerico -->
+            <div class="flex items-baseline justify-between gap-2 mb-6 pb-4 border-b border-current/10">
+              <span class={`text-[11px] font-mono tracking-widest uppercase font-semibold ${
+                srv.highlight ? 'text-brand-gold' : 'text-slate-500'
+              }`}>
+                {srv.number} / {srv.category}
+              </span>
 
-              <div class="p-6 pt-5">
-                <h3 class="text-xl font-extrabold text-brand-dark tracking-wide mb-3">
-                  {item.title}
-                </h3>
-                <p class="text-sm text-slate-600 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
+              {srv.highlight && (
+                <span class="text-[9px] uppercase tracking-widest font-bold text-brand-gold px-2 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">
+                  Certificato RRE
+                </span>
+              )}
             </div>
 
-            <div class="p-6 pt-0">
-              <a 
-                href={item.link} 
-                class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-gold hover:text-brand-gold-hover transition-colors"
-              >
-                <span>Scopri di più</span>
-                <ArrowRight class="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </a>
+            <!-- Titolo e descrizione -->
+            <h3 class={`font-serif text-2xl font-medium tracking-tight mb-3 ${
+              srv.highlight ? 'text-white' : 'text-slate-950'
+            }`}>
+              {srv.title}
+            </h3>
+
+            <p class={`text-xs sm:text-sm font-normal leading-relaxed mb-6 ${
+              srv.highlight ? 'text-slate-300' : 'text-slate-600'
+            }`}>
+              {srv.desc}
+            </p>
+
+            <!-- SLA Tecnico a riga pulita -->
+            <div class={`text-[11px] py-2.5 px-3 rounded-lg mb-6 border ${
+              srv.highlight 
+                ? 'bg-white/[0.03] border-white/10 text-slate-300' 
+                : 'bg-slate-50 border-slate-200/80 text-slate-700'
+            }`}>
+              <span class="text-slate-400 mr-1.5 font-mono uppercase text-[10px]">Tempistica:</span>
+              <span class="font-medium">{srv.sla}</span>
             </div>
+
+            <!-- Deliverables -->
+            <ul class="space-y-3 mb-8">
+              {srv.deliverables.map((d) => (
+                <li class="flex items-start gap-2.5 text-xs leading-relaxed">
+                  <CheckCircle2 class={`w-4 h-4 shrink-0 mt-0.5 ${
+                    srv.highlight ? 'text-brand-gold' : 'text-slate-900'
+                  }`} />
+                  <span class={srv.highlight ? 'text-slate-300' : 'text-slate-700'}>
+                    {d}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
-        );
-      })}
+
+          <!-- CTA Card -->
+          <div class="pt-2">
+            <a
+              href="#contatti"
+              class={`w-full inline-flex items-center justify-center gap-2 py-3.5 px-5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all ${
+                srv.highlight
+                  ? 'bg-brand-gold hover:bg-brand-gold-hover text-brand-dark shadow-md'
+                  : 'bg-slate-900 hover:bg-slate-800 text-white'
+              }`}
+            >
+              <span>Attiva Pratica</span>
+              <ArrowUpRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+        </div>
+      ))}
     </div>
 
   </div>
