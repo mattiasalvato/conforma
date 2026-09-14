@@ -6,62 +6,129 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <!-- Banner Card con background scuro e texture -->
-    <div class="relative w-full aspect-[16/10] sm:aspect-[21/9] min-h-[400px] sm:min-h-[460px] rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center text-center p-6 sm:p-12 bg-slate-950 group">
+    <div class="relative w-full rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center p-6 sm:p-12 lg:p-16 bg-slate-950 group">
       
       <!-- Immagine di sfondo desaturata -->
       <img
         src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=2069&auto=format&fit=crop"
         alt="Dettaglio architettonico"
-        class="absolute inset-0 w-full h-full object-cover object-center opacity-30 grayscale-[30%] group-hover:scale-105 group-hover:opacity-40 transition-all duration-1000 ease-out"
+        class="absolute inset-0 w-full h-full object-cover object-center opacity-25 grayscale-[30%] group-hover:scale-105 group-hover:opacity-35 transition-all duration-1000 ease-out"
       />
 
-      <!-- Overlay scuro a sfumatura per massimo contrasto -->
+      <!-- Overlay scuro per contrasto -->
       <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-brand-dark/85 to-brand-dark/75"></div>
 
       <!-- Contenuto in primo piano -->
-      <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+      <div class="relative z-10 w-full max-w-2xl mx-auto flex flex-col items-center text-center">
         
-        <h2 class="font-serif text-3xl sm:text-5xl lg:text-6xl font-normal text-white tracking-tight leading-[1.15] mb-4">
-          Hai un immobile o un portafoglio da verificare<span class="text-brand-gold font-sans font-bold">?</span>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white tracking-tight leading-[1.15] mb-3">
+          Hai un immobile o un portfoglio immobiliare da verificare<span class="text-brand-gold font-sans font-bold">?</span>
         </h2>
 
-        <p class="text-xs sm:text-sm lg:text-base text-slate-300 font-normal leading-relaxed max-w-xl mb-8">
-          I nostri tecnici e legali eseguono una prima valutazione di conformità per azzerare ogni rischio prima del preliminare o del rogito.
+        <p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed max-w-lg mb-8">
+          Compila il modulo per richiedere la valutazione tecnica.
         </p>
 
-        <!-- Form Email ad alta conversione -->
-        <div class="w-full max-w-md bg-white/[0.04] border border-white/10 rounded-2xl p-2 shadow-2xl backdrop-blur-sm">
-          <form id="cta-lead-form" class="flex flex-col sm:flex-row gap-2">
-            <div class="relative flex-1">
-              <input 
-                id="cta-email"
-                type="email" 
-                name="email"
+        <!-- Form Multi-Campo Istituzionale -->
+        <div class="w-full bg-white/[0.04] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-2xl backdrop-blur-md text-left">
+          <form id="cta-lead-form" class="space-y-3.5">
+            
+            <!-- Riga 1: Nome e Cognome -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="cta-nome" class="block text-[11px] uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+                  Nome *
+                </label>
+                <input 
+                  id="cta-nome"
+                  type="text" 
+                  name="nome"
+                  required 
+                  placeholder="Mario"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+                />
+              </div>
+              <div>
+                <label for="cta-cognome" class="block text-[11px] uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+                  Cognome *
+                </label>
+                <input 
+                  id="cta-cognome"
+                  type="text" 
+                  name="cognome"
+                  required 
+                  placeholder="Rossi"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+                />
+              </div>
+            </div>
+
+            <!-- Riga 2: Email e Telefono -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label for="cta-email" class="block text-[11px] uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+                  Email *
+                </label>
+                <input 
+                  id="cta-email"
+                  type="email" 
+                  name="email"
+                  required 
+                  placeholder="mario.rossi@email.com"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+                />
+              </div>
+              <div>
+                <label for="cta-telefono" class="block text-[11px] uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+                  Telefono *
+                </label>
+                <input 
+                  id="cta-telefono"
+                  type="tel" 
+                  name="telefono"
+                  required 
+                  placeholder="+39 340 000 0000"
+                  class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
+                />
+              </div>
+            </div>
+
+            <!-- Riga 3: Breve Descrizione -->
+            <div>
+              <label for="cta-descrizione" class="block text-[11px] uppercase tracking-wider font-semibold text-slate-300 mb-1.5">
+                Dettagli Immobile / Richiesta *
+              </label>
+              <textarea 
+                id="cta-descrizione"
+                name="descrizione"
+                rows="3"
                 required 
-                placeholder="Inserisci la tua email..."
-                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-xs text-white placeholder:text-slate-400 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all"
-              />
+                placeholder="Indica tipologia dell'immobile (appartamento, palazzina, portafoglio), comune e finalità (rogito, preliminare, audit preventivo)..."
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all resize-none"
+              ></textarea>
             </div>
             
+            <!-- Pulsante Submit -->
             <button 
               id="cta-submit-btn"
               type="submit"
-              class="inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-100 text-slate-950 font-semibold text-xs tracking-wide py-3.5 px-6 rounded-xl transition-all shadow-md shrink-0 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group/btn"
+              class="w-full inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-hover text-brand-dark font-bold text-xs uppercase tracking-wider py-3.5 px-6 rounded-xl transition-all shadow-lg cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed group/btn"
             >
-              <span id="cta-btn-text">Richiedi una Valutazione</span>
-              <ArrowUpRight id="cta-btn-icon" class="w-4 h-4 text-slate-700 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+              <span id="cta-btn-text">Invia Richiesta di Valutazione</span>
+              <ArrowUpRight id="cta-btn-icon" class="w-4 h-4 text-brand-dark group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
             </button>
           </form>
 
           <!-- Feedback di Successo -->
-          <div id="cta-form-success" class="hidden py-3 px-2 flex items-center justify-center gap-2 text-emerald-400 text-xs font-semibold">
-            <CheckCircle2 class="w-4 h-4 shrink-0" />
-            <span>Richiesta inviata! Ti contatteremo entro 24 ore.</span>
+          <div id="cta-form-success" class="hidden py-8 px-4 flex flex-col items-center justify-center gap-2 text-center text-emerald-400">
+            <CheckCircle2 class="w-8 h-8 shrink-0" />
+            <span class="text-sm font-semibold text-white">Richiesta inviata con successo!</span>
+            <span class="text-xs text-slate-300">Un nostro tecnico verificherà i dati e ti contatterà entro 24 ore.</span>
           </div>
 
           <!-- Feedback di Errore -->
-          <p id="cta-form-error" class="hidden text-rose-400 text-xs font-medium text-center py-2">
-            Si è verificato un errore. Riprova più tardi.
+          <p id="cta-form-error" class="hidden text-rose-400 text-xs font-medium text-center pt-3">
+            Si è verificato un errore durante l'invio. Riprova più tardi o contattaci telefonicamente.
           </p>
         </div>
 
@@ -73,28 +140,40 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
 </section>
 
 <script>
-  // Inserisci qui lo stesso URL dell'applicazione web di Google Apps Script
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjrLsr72OVlnuWIbGi7pQumzxeZyLJX55o1M_XHxEARl2-PtbZIGixlg3R92-WiJwFNQ/exec";
 
   function initCtaForm() {
     const form = document.getElementById('cta-lead-form') as HTMLFormElement | null;
+    const nomeInput = document.getElementById('cta-nome') as HTMLInputElement | null;
+    const cognomeInput = document.getElementById('cta-cognome') as HTMLInputElement | null;
     const emailInput = document.getElementById('cta-email') as HTMLInputElement | null;
+    const telefonoInput = document.getElementById('cta-telefono') as HTMLInputElement | null;
+    const descrizioneInput = document.getElementById('cta-descrizione') as HTMLTextAreaElement | null;
+    
     const submitBtn = document.getElementById('cta-submit-btn') as HTMLButtonElement | null;
     const btnText = document.getElementById('cta-btn-text');
     const btnIcon = document.getElementById('cta-btn-icon');
     const successMsg = document.getElementById('cta-form-success');
     const errorMsg = document.getElementById('cta-form-error');
 
-    if (!form || !emailInput || !submitBtn) return;
+    if (!form || !submitBtn) return;
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const email = emailInput.value.trim();
 
-      if (!email) return;
+      const payload = {
+        nome: nomeInput?.value.trim() || '',
+        cognome: cognomeInput?.value.trim() || '',
+        email: emailInput?.value.trim() || '',
+        telefono: telefonoInput?.value.trim() || '',
+        descrizione: descrizioneInput?.value.trim() || '',
+        source: 'cta-homepage'
+      };
+
+      if (!payload.email || !payload.nome) return;
 
       submitBtn.disabled = true;
-      if (btnText) btnText.textContent = "Invio...";
+      if (btnText) btnText.textContent = "Invio in corso...";
       btnIcon?.classList.add('hidden');
       errorMsg?.classList.add('hidden');
 
@@ -105,10 +184,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ 
-            email,
-            source: 'cta-homepage'
-          }),
+          body: JSON.stringify(payload),
         });
 
         form.classList.add('hidden');
@@ -116,7 +192,7 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
       } catch (err) {
         console.error("Errore invio CTA:", err);
         submitBtn.disabled = false;
-        if (btnText) btnText.textContent = "Richiedi una Valutazione";
+        if (btnText) btnText.textContent = "Invia Richiesta di Valutazione";
         btnIcon?.classList.remove('hidden');
         errorMsg?.classList.remove('hidden');
       }

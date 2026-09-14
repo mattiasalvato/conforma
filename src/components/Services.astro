@@ -4,12 +4,12 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
 const services = [
   {
     number: "01",
-    category: "Per Agenzie & Proprietà",
-    title: "Pacchetto Conformità Sell & RRE",
+    category: "Per Agenzie & Privati",
+    title: "Pacchetto Conformità Sell",
     desc: "Il protocollo completo per portare l'immobile al preliminare e al rogito notarile a zero rischi di contenzioso.",
     sla: "Sopralluogo in 24h • Avvio fascicolo in 48h",
     deliverables: [
-      "Rilascio Certificato RRE (Relazione di Regolarità Edilizia)",
+      "Sopralluogo e recupero della documentazione in possesso",
       "Accesso atti e verifica conformità urbanistica e catastale",
       "Allineamento planimetrie e regolarizzazione difformità"
     ],
@@ -17,20 +17,20 @@ const services = [
   },
   {
     number: "02",
-    category: "Per Acquirenti & Investitori",
+    category: "Per Privati & Investitori",
     title: "Due Diligence Pre-Acquisto",
     desc: "Audit tecnico e legale preventivo su compravendite singole per accertare lo stato legittimo prima della proposta.",
     sla: "Presa in carico entro 24 ore",
     deliverables: [
-      "Analisi vincoli paesaggistici, storici e condominiali",
+      "Analisi di tutta la documentazione presente",
       "Stima economica e tempi per eventuali sanatorie",
-      "Relazione peritale per la banca (delibera mutuo)"
+      "Relazione finale ed eventuale rilascio di RRE (Relazione di regolarità Edilizia)"
     ],
     highlight: false
   },
   {
     number: "03",
-    category: "Per Reti & Portafogli",
+    category: "Per Agenzie Immobiliari & Portfogli",
     title: "Convenzione Agenzie & Portfolio",
     desc: "Canale preferenziale per agenzie con molteplici unità: dashboard condivisa e gestione integrata dei mandati.",
     sla: "SLA dedicati e referente tecnico unico",
@@ -87,11 +87,6 @@ const services = [
                 {srv.number} / {srv.category}
               </span>
 
-              {srv.highlight && (
-                <span class="text-[9px] uppercase tracking-widest font-bold text-brand-gold px-2 py-0.5 rounded bg-brand-gold/10 border border-brand-gold/20">
-                  Certificato RRE
-                </span>
-              )}
             </div>
 
             <!-- Titolo e descrizione -->
