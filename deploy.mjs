@@ -1,29 +1,27 @@
-import * as ftp from 'basic-ftp';
+import FtpDeploy from "ftp-deploy";
 
-async function deploy() {
-  const client = new ftp.Client();
-  client.ftp.verbose = true; // Mostra lo stato e il trasferimento file nel terminale
+const ftpDeploy = new FtpDeploy();
 
-  try {
-    console.log("Connessione al server Aruba...");
-    await client.access({
-      host: "ftp.conformagroup.it",
-      user: "4062365@aruba.it",
-      password: "Welaten2026##",
-      secure: false
-    });
+const config = {
+  user: "4062365@aruba.it",
+  password: "Welaten2026##",
+  host: "ftp.conformagroup.it",
+  port: 21,
+  localRoot: "./dist",
+  remoteRoot: "/conformagroup.it/", // Se la cartella si chiama conformagroup.it
+  // remoteRoot: "/www.conformagroup.it/", // Usa questo se vedi il prefisso www
+  include: ["*", "**/*"],
+  deleteRemote: false,
+  forcePasv: true
+};
 
-    console.log("Connesso! Caricamento dei file da ./dist nella root...");
-    
-    // Carica direttamente nella root corrente visualizzata dal server ("/")
-    await client.uploadFromDir("dist", "/");
+console.log("Connessione e caricamento in corso su Aruba...");
 
-    console.log("✅ Deploy completato con successo!");
-  } catch (err) {
-    console.error("❌ Errore durante il deploy:", err);
-  } finally {
-    client.close();
-  }
-}
+ftpDeploy.on("uploading", function (data) {
+  console.log(`Caricamento [${data.transferredFileCount}/${data.totalFilesCount}]: ${data.filename}`);
+});
 
-deploy();
+ftpDeploy
+  .deploy(config)
+  .then(() => console.log("✅ Deploy completato con successo!"))
+  .catch((err) => console.error("❌ Errore durante il deploy:", err));
