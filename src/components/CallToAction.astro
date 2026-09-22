@@ -107,7 +107,25 @@ import { ArrowUpRight, CheckCircle2 } from 'lucide-astro';
                 class="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all resize-none"
               ></textarea>
             </div>
-            
+            <!-- Checkbox Privacy Policy GDPR -->
+            <div class="flex items-start gap-3 pt-1">
+              <div class="flex items-center h-5">
+                <input
+                  id="privacy-consent"
+                  name="privacy"
+                  type="checkbox"
+                  required
+                  class="w-4 h-4 rounded border-white/20 bg-white/5 text-brand-gold focus:ring-brand-gold focus:ring-offset-brand-dark focus:ring-offset-2 cursor-pointer transition-colors checked:bg-brand-gold"
+                />
+              </div>
+              <label for="privacy-consent" class="text-xs text-slate-400 select-none leading-relaxed font-sans">
+                Dichiaro di aver letto e compreso la 
+                <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" class="text-brand-gold hover:underline font-medium">
+                  Privacy Policy
+                </a> 
+                e acconsento al trattamento dei dati personali per la gestione della richiesta. <span class="text-brand-gold">*</span>
+              </label>
+            </div>
             <!-- Pulsante Submit -->
             <button 
               id="cta-submit-btn"

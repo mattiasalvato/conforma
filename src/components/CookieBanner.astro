@@ -1,0 +1,133 @@
+<!-- Pulsante Flottante Riapertura Preferenze -->
+<button
+  id="cookie-floating-btn"
+  type="button"
+  aria-label="Gestisci preferenze cookie"
+  class="fixed bottom-4 left-4 z-40 w-11 h-11 rounded-full bg-slate-900/90 hover:bg-slate-950 text-[#C6A868] border border-white/10 shadow-2xl flex items-center justify-center backdrop-blur-md transition-all hover:scale-105 cursor-pointer focus:outline-none"
+>
+  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"></path>
+    <path d="M8.5 8.5v.01"></path>
+    <path d="M7.5 14v.01"></path>
+    <path d="M11.5 16.5v.01"></path>
+    <path d="M16 13v.01"></path>
+  </svg>
+</button>
+
+<!-- Banner Modale Cookie -->
+<div
+  id="cookie-banner"
+  class="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 sm:p-6 bg-slate-950/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="relative w-full max-w-lg bg-slate-900 border border-white/10 rounded-2xl p-6 shadow-2xl text-left">
+    
+    <div class="flex items-center justify-between gap-4 mb-3">
+      <h3 class="text-base sm:text-lg font-serif font-medium text-white">
+        Informativa sui Cookie
+      </h3>
+      <button id="cookie-close-modal" type="button" class="text-slate-400 hover:text-white p-1 cursor-pointer">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+      Utilizziamo cookie tecnici necessari per il corretto funzionamento del sito e strumenti statistici anonimizzati per migliorarne le prestazioni. Per saperne di più consulta la nostra 
+      <a href="/cookie-policy" class="text-[#C6A868] underline">Cookie Policy</a>.
+    </p>
+
+    <!-- Switch Preferenze -->
+    <div class="space-y-2 mb-6">
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+        <span class="text-xs text-white">Cookie Tecnici (Necessari)</span>
+        <span class="text-[10px] uppercase font-bold text-slate-400 px-2 py-0.5 rounded bg-white/5">Sempre Attivi</span>
+      </div>
+
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+        <span class="text-xs text-white">Cookie Statistici Anonimi</span>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" id="analytics-cookies" class="sr-only peer" checked>
+          <div class="w-8 h-4 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[1px] after:left-[1px] after:bg-white after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-[#C6A868]"></div>
+        </label>
+      </div>
+    </div>
+
+    <!-- Pulsanti Azione -->
+    <div class="flex flex-col sm:flex-row items-center justify-end gap-2">
+      <button
+        id="cookie-reject-btn"
+        type="button"
+        class="w-full sm:w-auto px-4 py-2 rounded-xl border border-white/10 hover:bg-white/5 text-slate-300 text-xs font-semibold cursor-pointer"
+      >
+        Solo Necessari
+      </button>
+      <button
+        id="cookie-accept-all-btn"
+        type="button"
+        class="w-full sm:w-auto px-5 py-2 rounded-xl bg-[#C6A868] hover:bg-[#b59858] text-slate-950 text-xs font-bold uppercase tracking-wider cursor-pointer"
+      >
+        Accetta Tutti
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script is:inline>
+  (function() {
+    function initCookie() {
+      const banner = document.getElementById('cookie-banner');
+      const floatingBtn = document.getElementById('cookie-floating-btn');
+      const closeBtn = document.getElementById('cookie-close-modal');
+      const acceptAll = document.getElementById('cookie-accept-all-btn');
+      const rejectBtn = document.getElementById('cookie-reject-btn');
+      const analyticsInput = document.getElementById('analytics-cookies');
+
+      if (!banner || !floatingBtn) return;
+
+      const KEY = 'conforma_consent_v1';
+
+      function showBanner() {
+        banner.classList.remove('opacity-0', 'pointer-events-none');
+        banner.classList.add('opacity-100', 'pointer-events-auto');
+      }
+
+      function hideBanner() {
+        banner.classList.remove('opacity-100', 'pointer-events-auto');
+        banner.classList.add('opacity-0', 'pointer-events-none');
+      }
+
+      function setConsent(analytics) {
+        localStorage.setItem(KEY, JSON.stringify({
+          necessary: true,
+          analytics: analytics,
+          date: new Date().toISOString()
+        }));
+        hideBanner();
+      }
+
+      const existing = localStorage.getItem(KEY);
+      if (!existing) {
+        setTimeout(showBanner, 600);
+      } else {
+        try {
+          const val = JSON.parse(existing);
+          if (analyticsInput) analyticsInput.checked = !!val.analytics;
+        } catch(e) {}
+      }
+
+      floatingBtn.onclick = showBanner;
+      if (closeBtn) closeBtn.onclick = hideBanner;
+      if (acceptAll) acceptAll.onclick = () => setConsent(true);
+      if (rejectBtn) rejectBtn.onclick = () => setConsent(false);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initCookie);
+    } else {
+      initCookie();
+    }
+    document.addEventListener('astro:after-swap', initCookie);
+  })();
+</script>
