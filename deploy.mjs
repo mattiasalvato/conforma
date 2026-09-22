@@ -7,7 +7,7 @@ async function deploy() {
   try {
     console.log("Connessione al server Aruba...");
     await client.access({
-      host: "ftp.conforma.it", // oppure l'IP: "89.46.104.218"
+      host: "ftp.conformagroup.it", // oppure l'IP: "89.46.104.218"
       user: "4062365@aruba.it",
       password: "Welaten2026##",
       secure: false // Imposta a true se Aruba richiede FTPS esplicito (TLS)
