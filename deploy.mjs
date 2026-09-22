@@ -2,22 +2,21 @@ import * as ftp from 'basic-ftp';
 
 async function deploy() {
   const client = new ftp.Client();
-  client.ftp.verbose = true; // Mostra i log e i passaggi nel terminale
+  client.ftp.verbose = true; // Mostra lo stato e il trasferimento file nel terminale
 
   try {
     console.log("Connessione al server Aruba...");
     await client.access({
-      host: "ftp.conformagroup.it", // oppure l'IP: "89.46.104.218"
+      host: "ftp.conformagroup.it",
       user: "4062365@aruba.it",
       password: "Welaten2026##",
-      secure: false // Imposta a true se Aruba richiede FTPS esplicito (TLS)
+      secure: false
     });
 
-    console.log("Connesso! Caricamento dei file da ./dist...");
+    console.log("Connesso! Caricamento dei file da ./dist nella root...");
     
-    // Su Aruba la root web è solitamente "www.conforma.it" o "conforma.it"
-    // Se l'utente FTP atterra già dentro la root pubblica dei file, metti solo "/"
-    await client.uploadFromDir("dist", "www.conforma.it");
+    // Carica direttamente nella root corrente visualizzata dal server ("/")
+    await client.uploadFromDir("dist", "/");
 
     console.log("✅ Deploy completato con successo!");
   } catch (err) {
