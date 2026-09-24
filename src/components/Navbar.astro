@@ -1,19 +1,21 @@
 ---
 import { Menu, X, ArrowUpRight, Lock } from 'lucide-astro';
+import { Image } from 'astro:assets';
+import logoImg from '../assets/logo.png';
 ---
 
 <header class="sticky top-0 z-40 bg-brand-dark/95 backdrop-blur-md border-b border-white/10 text-white w-full">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-20">
       
-      <!-- Logo CONFORMA. -->
-      <a href="/" class="flex flex-col group shrink-0">
-        <span class="text-xl sm:text-2xl font-black uppercase font-sans text-white inline-flex items-baseline">
-          <span class="tracking-[0.18em]">CONFORM</span><span class="tracking-normal">A</span><span class="text-brand-gold -ml-[1px] font-serif text-2xl sm:text-3xl font-black leading-none">.</span>
-        </span>
-        <span class="text-[8px] sm:text-[9px] tracking-[0.28em] text-slate-400 uppercase -mt-0.5">
-          Real Estate Compliance
-        </span>
+      <!-- Logo CONFORMA Header -->
+      <a href="/" class="flex items-center shrink-0 group">
+        <Image 
+          src={logoImg} 
+          alt="CONFORMA - Real Estate Compliance" 
+          class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:opacity-95" 
+          loading="eager" 
+        />
       </a>
 
       <!-- Desktop Nav -->
@@ -62,15 +64,15 @@ import { Menu, X, ArrowUpRight, Lock } from 'lucide-astro';
   id="mobile-menu-overlay"
   class="fixed inset-0 z-50 w-screen h-screen h-dvh bg-brand-dark flex flex-col justify-between p-6 sm:p-10 opacity-0 pointer-events-none transition-all duration-300 ease-in-out md:hidden overflow-y-auto"
 >
-  <!-- Top bar con Logo e Chiudi -->
+  <!-- Top bar con Logo Immagine e Chiudi -->
   <div class="flex items-center justify-between w-full shrink-0">
-    <a href="/" class="flex flex-col mobile-nav-link">
-      <span class="text-2xl font-black uppercase font-sans text-white inline-flex items-baseline">
-        <span class="tracking-[0.18em]">CONFORM</span><span class="tracking-normal">A</span><span class="text-brand-gold -ml-[1px] font-serif text-3xl font-black leading-none">.</span>
-      </span>
-      <span class="text-[9px] tracking-[0.28em] text-slate-400 uppercase -mt-0.5">
-        Real Estate Compliance
-      </span>
+    <a href="/" class="flex items-center mobile-nav-link shrink-0">
+      <Image 
+        src={logoImg} 
+        alt="CONFORMA - Real Estate Compliance" 
+        class="h-9 sm:h-10 w-auto object-contain" 
+        loading="eager" 
+      />
     </a>
     <button
       id="mobile-menu-close"

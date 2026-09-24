@@ -1,5 +1,7 @@
 ---
 import { Linkedin, Instagram, Mail } from 'lucide-astro';
+import { Image } from 'astro:assets';
+import logoImg from '../assets/logo.png';
 ---
 
 <footer class="bg-brand-dark text-white pt-16 pb-8 border-t border-white/10">
@@ -8,22 +10,21 @@ import { Linkedin, Instagram, Mail } from 'lucide-astro';
       
       <!-- Brand & Mission -->
       <div class="lg:col-span-1">
-        <!-- Logo CONFORMA. (punto compatto e attaccato) -->
-        <a href="/" class="flex flex-col group shrink-0 mb-4">
-          <span class="text-xl sm:text-2xl font-black uppercase font-sans text-white inline-flex items-baseline">
-            <span class="tracking-[0.18em]">CONFORM</span><span class="tracking-normal">A</span><span class="text-brand-gold -ml-[1px] font-serif text-2xl sm:text-3xl font-black leading-none">.</span>
-          </span>
-          <span class="text-[8px] sm:text-[9px] tracking-[0.28em] text-slate-400 uppercase -mt-0.5">
-            Real Estate Compliance
-          </span>
+        <a href="/" class="inline-flex items-center group mb-4">
+          <Image 
+            src={logoImg} 
+            alt="CONFORMA - Real Estate Compliance" 
+            class="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:opacity-95" 
+            loading="lazy" 
+          />
         </a>
         <p class="text-xs text-slate-400 leading-relaxed mb-6">
           La prima società specializzata nella conformità e regolarità edilizia per agenzie e investitori. Trasparenza, certezza, valore.
         </p>
         <div class="flex gap-4 text-slate-400">
-          <a href="#" class="hover:text-brand-gold transition-colors"><Linkedin class="w-4 h-4" /></a>
-          <a href="#" class="hover:text-brand-gold transition-colors"><Instagram class="w-4 h-4" /></a>
-          <a href="#" class="hover:text-brand-gold transition-colors"><Mail class="w-4 h-4" /></a>
+          <a href="#" class="hover:text-brand-gold transition-colors" aria-label="LinkedIn"><Linkedin class="w-4 h-4" /></a>
+          <a href="#" class="hover:text-brand-gold transition-colors" aria-label="Instagram"><Instagram class="w-4 h-4" /></a>
+          <a href="mailto:info@conformagroup.it" class="hover:text-brand-gold transition-colors" aria-label="Email"><Mail class="w-4 h-4" /></a>
         </div>
       </div>
 
@@ -31,21 +32,21 @@ import { Linkedin, Instagram, Mail } from 'lucide-astro';
       <div>
         <h5 class="text-xs font-bold tracking-wider uppercase text-white mb-4">Azienda</h5>
         <ul class="space-y-2.5 text-xs text-slate-400">
-          <li><a href="#perche-conforma" class="hover:text-white transition-colors">Chi siamo</a></li>
-          <li><a href="#perche-conforma" class="hover:text-white transition-colors">Metodo CONFORMA</a></li>
-          <li><a href="#practice-tracker" class="hover:text-white transition-colors">Practice Tracker</a></li>
-          <li><a href="#contatti" class="hover:text-white transition-colors">Convenzioni Partner</a></li>
+          <li><a href="/#perche-conforma" class="hover:text-white transition-colors">Chi siamo</a></li>
+          <li><a href="/#perche-conforma" class="hover:text-white transition-colors">Metodo CONFORMA</a></li>
+          <li><a href="/#practice-tracker" class="hover:text-white transition-colors">Practice Tracker</a></li>
+          <li><a href="/#contatti" class="hover:text-white transition-colors">Convenzioni Partner</a></li>
         </ul>
       </div>
 
-      <!-- Servizi (Aggiornati con RRE e target Agenzie) -->
+      <!-- Servizi -->
       <div>
         <h5 class="text-xs font-bold tracking-wider uppercase text-white mb-4">Servizi</h5>
         <ul class="space-y-2.5 text-xs text-slate-400">
-          <li><a href="#servizi" class="hover:text-white transition-colors">Certificato RRE & Conformità</a></li>
-          <li><a href="#servizi" class="hover:text-white transition-colors">Due Diligence Pre-Acquisto</a></li>
-          <li><a href="#servizi" class="hover:text-white transition-colors">Convenzione Reti Agenzie</a></li>
-          <li><a href="#servizi" class="hover:text-white transition-colors">Gestione Portafogli Immobiliari</a></li>
+          <li><a href="/#servizi" class="hover:text-white transition-colors">Certificato RRE & Conformità</a></li>
+          <li><a href="/#servizi" class="hover:text-white transition-colors">Due Diligence Pre-Acquisto</a></li>
+          <li><a href="/#servizi" class="hover:text-white transition-colors">Convenzione Reti Agenzie</a></li>
+          <li><a href="/#servizi" class="hover:text-white transition-colors">Gestione Portafogli Immobiliari</a></li>
         </ul>
       </div>
 
@@ -53,10 +54,10 @@ import { Linkedin, Instagram, Mail } from 'lucide-astro';
       <div>
         <h5 class="text-xs font-bold tracking-wider uppercase text-white mb-4">Risorse</h5>
         <ul class="space-y-2.5 text-xs text-slate-400">
-          <li><a href="#" class="hover:text-white transition-colors">Osservatorio Normativo</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Guida Decreto Salva Casa</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Checklist Rogito Notarile</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">FAQ Tecniche</a></li>
+          <li><a href="/#osservatorio" class="hover:text-white transition-colors">Osservatorio Normativo</a></li>
+          <li><a href="/#osservatorio" class="hover:text-white transition-colors">Guida Decreto Salva Casa</a></li>
+          <li><a href="/#osservatorio" class="hover:text-white transition-colors">Checklist Rogito Notarile</a></li>
+          <li><a href="/#contatti" class="hover:text-white transition-colors">FAQ Tecniche</a></li>
         </ul>
       </div>
 
@@ -67,12 +68,14 @@ import { Linkedin, Instagram, Mail } from 'lucide-astro';
           Viale Papiniano 48<br/>20123 Milano (MI)
         </p>
         <p class="text-xs text-slate-400 mb-1">02 12345678</p>
-        <p class="text-xs text-slate-400">info@conforma.it</p>
+        <a href="mailto:info@conformagroup.it" class="text-xs text-slate-400 hover:text-brand-gold transition-colors">
+          info@conformagroup.it
+        </a>
       </div>
 
     </div>
 
-    <!-- Bottom copyright -->
+    <!-- Bottom copyright & Policy Links -->
     <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
       <p>© 2026 CONFORMA S.r.l. — P.IVA 12345678901 — Tutti i diritti riservati</p>
       <div class="flex gap-6">
